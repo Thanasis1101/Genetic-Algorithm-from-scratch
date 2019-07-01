@@ -109,7 +109,7 @@ def create_generation(population, fitness_values, mating_probability, mutation_p
     mating_pool = sample_population(population, fitness_values, mating_probability)
     parents = crossover(mating_pool)
 
-    # Preservation
+    # Elitism
     preserved_population = preserve_top(population, fitness_values, 1 - mating_probability)
 
     # New generation
@@ -123,10 +123,10 @@ def create_generation(population, fitness_values, mating_probability, mutation_p
 
 
 def fitness(chromosome):
-	# current problem: find the chromosome with all bits 1
+    # current problem: find the chromosome with all bits 1
     return sum(chromosome) # how many bits are 1
     # different problem: find the chromosome with all bits 0
-	# return len(chromosome) - sum(chromosome) # how many bits are 0
+    # return len(chromosome) - sum(chromosome) # how many bits are 0
 
 
 def run_genetic_algorithm(population_size, chromosome_size, mating_probability, mutation_probability, max_fitness):
@@ -163,12 +163,12 @@ def main():
 
     generations_sum = 0
     for i in range(iterations):
-        print("Iteration:", i+1)
+        print("Iteration", i+1)
         generations, best_chromosome = run_genetic_algorithm(population_size, chromosome_size, mating_probability,
                                                              mutation_probability, max_fitness)
         generations_sum += generations
-        print("\t", generations, "generations needed")
-        print("\t", "Solution:", best_chromosome)
+        print("   ", "Generations needed:", generations)
+        print("   ", "Solution:", best_chromosome)
 
     print("Average number of generations:", generations_sum/iterations)
 
